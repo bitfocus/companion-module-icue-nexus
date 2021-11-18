@@ -1,0 +1,55 @@
+{
+	"name": "icue-nexus",
+	"version": "0.0.1",
+	"api_version": "1.0.0",
+	"description": "icue-nexus",
+	"keywords": [
+		"Generic"
+	],
+	"manufacturer": "Corsair",
+	"product": "iCUE Nexus",
+	"shortname": "nexus",
+	"homepage": "https://github.com/bitfocus/companion-module-icue-nexus",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "npx rimraf dist && npx tsc -p tsconfig.build.json",
+		"build:main": "tsc -p tsconfig.build.json",
+		"build:watch": "tsc -p tsconfig.build.json --watch",
+		"lint": "eslint . --ext .ts --ext .js --ignore-pattern dist",
+		"lint-fix": "yarn lint --fix",
+		"license-validate": "yarn sofie-licensecheck",
+		"postinstall": "yarn build"
+	},
+	"author": "Tinko Liu <TinkoLiu@users.noreply.github.com>",
+	"license": "MIT",
+	"prettier": "@sofie-automation/code-standard-preset/.prettierrc.json",
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{css,json,md,scss}": [
+			"prettier --write"
+		],
+		"*.{ts,tsx,js,jsx}": [
+			"yarn lint-fix"
+		]
+	},
+	"engines": {
+		"node": "^12.14 || 14"
+	},
+	"dependencies": {
+		"@types/node": "^12.20.13",
+		"canvas": "^2.8.0",
+		"node-hid": "^2.1.1",
+		"usb-detection": "^4.10.0"
+	},
+	"devDependencies": {
+		"@sofie-automation/code-standard-preset": "^0.4.1",
+		"@types/node-hid": "^1.3.1",
+		"electron-rebuild": "3.0.0",
+		"nan": "2.14.0",
+		"typescript": "~4.2"
+	}
+}
